@@ -1,0 +1,29 @@
+﻿
+using UserDetails.Domain.Models;
+
+namespace UserDetails.Domain.Services.Communication
+{
+    public class SaveUserDetailResponse :BaseResponse 
+    {
+        public User User { get; private set; }
+        private SaveUserDetailResponse(bool success, string message, User user) : base(success, message)
+        {
+            User = user;
+        }
+        /// <summary>
+        /// Creates a success response.
+        /// </summary>
+        /// <param name="user">Saved user.</param>
+        /// <returns>Response.</returns>
+        public SaveUserDetailResponse(User user) : this(true, string.Empty, user)
+        { }
+
+        /// <summary>
+        /// Creates am error response.
+        /// </summary>
+        /// <param name="message">Error message.</param>
+        /// <returns>Response.</returns>
+        public SaveUserDetailResponse(string message) : this(false, message, null)
+        { }
+    }
+}
